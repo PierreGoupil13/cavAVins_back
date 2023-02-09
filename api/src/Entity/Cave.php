@@ -21,7 +21,9 @@ use Symfony\Component\Serializer\Annotation\Groups;
         new GetCollection(
             normalizationContext: ['groups' => ['read:Caves']]
         ),
-        new Post()
+        new Post(
+            denormalizationContext: ['groups' => ['write:Cave']]
+        )
 
     ]
 )]
@@ -33,11 +35,11 @@ class Cave
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    #[Groups(['read:Caves'])]
+    #[Groups(['read:Caves','write:Cave'])]
     private ?string $nom = null;
 
 
-    #[Groups(['read:Cave'])]
+    #[Groups(['read:Cave','write:Cave'])]
     #[ORM\ManyToOne(inversedBy: 'caves')]
     private ?User $owner = null;
 

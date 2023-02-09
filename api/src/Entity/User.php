@@ -6,6 +6,7 @@ use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\GetCollection;
 use ApiPlatform\Metadata\Post;
+use App\Controller\User\UserCountController;
 use App\Repository\UserRepository;
 use Composer\XdebugHandler\Status;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -18,12 +19,24 @@ use Symfony\Component\Serializer\Annotation\Groups;
 #[ApiResource(
     operations: [
         new Get(
-            normalizationContext: ['groups' => ['read:Users', 'read:User', 'read:Caves']]
+            normalizationContext: ['groups' => ['read:Users', 'read:User', 'read:Caves']],
         ),
         new GetCollection(
             normalizationContext: ['groups' => ['read:Users']]
         ),
-        new Post()
+        new Post(
+            denormalizationContext: ['groups' => ['write:User']]
+        ),
+        new GetCollection(
+            name: 'count',
+            uriTemplate: '/users/all/count',
+            controller: UserCountController::class,
+            openapiContext: [
+                'summary' => 'Retrive the total number of users',
+                'description' => 'Retrive the total number of users',
+                'parameters' => []
+            ]
+        )
     ]
 )]
 class User
@@ -34,18 +47,19 @@ class User
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    #[Groups(['read:Users','read:Cave'])]
+    #[Groups(['read:Users', 'read:Cave', 'write:User'])]
     private ?string $firstName = null;
 
     #[ORM\Column(length: 255)]
-    #[Groups(['read:Users'])]
+    #[Groups(['read:Users', 'write:User'])]
     private ?string $lastName = null;
 
     #[ORM\Column(length: 255)]
-    #[Groups(['read:User'])]
+    #[Groups(['read:User', 'write:User'])]
     private ?string $email = null;
 
     #[ORM\Column(length: 255)]
+    #[Groups(['write:User'])]
     private ?string $pwd = null;
 
     #[ORM\OneToMany(mappedBy: 'owner', targetEntity: Cave::class)]

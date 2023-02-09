@@ -22,8 +22,10 @@ use Symfony\Component\Serializer\Annotation\Groups;
         new GetCollection(
             normalizationContext: ['groups' => ['read:Bouteilles']]
         ),
-        new Post()
-    ]
+        new Post(
+            denormalizationContext: ['groups' => ['write:Bouteille']]
+        )
+        ]
 )]
 class Bouteille
 {
@@ -33,18 +35,19 @@ class Bouteille
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    #[Groups(['read:Bouteilles'])]
+    #[Groups(['read:Bouteilles','write:Bouteille'])]
     private ?string $nom = null;
 
     #[ORM\Column(length: 255)]
-    #[Groups(['read:Bouteille'])]
+    #[Groups(['read:Bouteille','write:Bouteille'])]
     private ?string $type = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
-    #[Groups(['read:Bouteille'])]
+    #[Groups(['read:Bouteille','write:Bouteille'])]
     private ?\DateTimeInterface $annee = null;
 
     #[ORM\ManyToMany(targetEntity: Cave::class, mappedBy: 'bouteilles')]
+    #[Groups(['read:Bouteille'])]
     private Collection $caves;
 
     public function __construct()
