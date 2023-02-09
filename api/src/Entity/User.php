@@ -2,16 +2,18 @@
 
 namespace App\Entity;
 
-use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\Get;
-use ApiPlatform\Metadata\GetCollection;
+use ApiPlatform\Metadata\Put;
 use ApiPlatform\Metadata\Post;
-use App\Controller\User\UserCountController;
+use ApiPlatform\Metadata\Delete;
+use Doctrine\ORM\Mapping as ORM;
 use App\Repository\UserRepository;
 use Composer\XdebugHandler\Status;
-use Doctrine\Common\Collections\ArrayCollection;
+use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\GetCollection;
 use Doctrine\Common\Collections\Collection;
-use Doctrine\ORM\Mapping as ORM;
+use App\Controller\User\UserCountController;
+use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
@@ -19,9 +21,11 @@ use Symfony\Component\Serializer\Annotation\Groups;
 #[ApiResource(
     operations: [
         new Get(
+            uriTemplate: '/users/unique/{id}',
             normalizationContext: ['groups' => ['read:Users', 'read:User', 'read:Caves']],
         ),
         new GetCollection(
+            uriTemplate: '/users/all',
             normalizationContext: ['groups' => ['read:Users']]
         ),
         new Post(
@@ -36,6 +40,12 @@ use Symfony\Component\Serializer\Annotation\Groups;
                 'description' => 'Retrive the total number of users',
                 'parameters' => []
             ]
+        ),
+        new Put(
+            uriTemplate: '/users/unique/{id}'
+        ),
+        new Delete(
+            uriTemplate: '/users/unique/{id}'
         )
     ]
 )]

@@ -2,27 +2,37 @@
 
 namespace App\Entity;
 
-use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\Get;
-use ApiPlatform\Metadata\GetCollection;
+use ApiPlatform\Metadata\Put;
 use ApiPlatform\Metadata\Post;
-use App\Repository\CaveRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+use ApiPlatform\Metadata\Delete;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\CaveRepository;
+use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\GetCollection;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: CaveRepository::class)]
 #[ApiResource(
     operations: [
         new Get(
+            uriTemplate: '/caves/unique/{id}',
             normalizationContext : ['groups' => ['read:Caves','read:Cave']]
         ),
         new GetCollection(
+            uriTemplate: '/caves/all',
             normalizationContext: ['groups' => ['read:Caves']]
         ),
         new Post(
             denormalizationContext: ['groups' => ['write:Cave']]
+        ),
+        new Put(
+            uriTemplate: '/caves/unique/{id}',
+        ),
+        new Delete(
+            uriTemplate: '/caves/unique/{id}',
         )
 
     ]

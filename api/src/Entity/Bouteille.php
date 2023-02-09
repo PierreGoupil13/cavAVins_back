@@ -3,9 +3,11 @@
 namespace App\Entity;
 
 use ApiPlatform\Metadata\ApiResource;
+use ApiPlatform\Metadata\Delete;
 use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\GetCollection;
 use ApiPlatform\Metadata\Post;
+use ApiPlatform\Metadata\Put;
 use App\Repository\BouteilleRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -17,13 +19,22 @@ use Symfony\Component\Serializer\Annotation\Groups;
 #[ApiResource(
     operations: [
         new Get(
+            uriTemplate: '/bouteilles/unique/{id}',
             normalizationContext: ['groups' => ['read:Bouteilles','read:Bouteille']]
         ),
         new GetCollection(
+            uriTemplate: '/bouteilles/all',
             normalizationContext: ['groups' => ['read:Bouteilles']]
         ),
         new Post(
+            uriTemplate: '/bouteilles',
             denormalizationContext: ['groups' => ['write:Bouteille']]
+        ),
+        new Put(
+            uriTemplate: '/bouteilles/unique/{id}'
+        ),
+        new Delete(
+            uriTemplate: '/bouteilles/unique/{id}'
         )
         ]
 )]
