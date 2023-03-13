@@ -1,72 +1,28 @@
 [
   {
-    "_id": "78bc92ae-af63-4ba6-99ce-110edc003b78",
+    "_id": "4ef34b96-050a-413e-8e84-fa50fd9f04d5",
     "colId": "history",
     "containerId": "",
-    "name": "https://localhost/greetings?page=1",
-    "url": "https://localhost/greetings?page=1",
-    "method": "GET",
-    "sortNum": 0,
-    "created": "2023-02-07T13:12:33.782Z",
-    "modified": "2023-02-07T13:12:33.782Z",
-    "headers": [],
-    "params": [
-      {
-        "name": "page",
-        "value": "1",
-        "isPath": false
-      }
-    ],
-    "tests": []
-  },
-  {
-    "_id": "7fc71376-6efb-47c9-b6c3-66de88618340",
-    "colId": "history",
-    "containerId": "",
-    "name": "https://localhost/greetings",
-    "url": "https://localhost/posts",
-    "method": "GET",
-    "sortNum": 0,
-    "created": "2023-02-07T13:12:38.731Z",
-    "modified": "2023-02-07T14:37:28.664Z",
-    "headers": [
-      {
-        "name": "Content-Type",
-        "value": "application/ld+json"
-      }
-    ],
-    "params": [],
-    "body": {
-      "type": "json",
-      "raw": "{\n  \"title\": \"Peter's API\",\n  \"slug\": \"string\",\n  \"content\": \"Ma première API\",\n  \"createdAt\": \"2023-02-07T14:35:43.189Z\"\n}",
-      "form": []
-    },
-    "tests": []
-  },
-  {
-    "_id": "33ad85c8-0385-401a-afd1-8b52028568ec",
-    "colId": "history",
-    "containerId": "",
-    "name": "https://localhost/greetings/1",
-    "url": "https://localhost/greetings/1",
-    "method": "GET",
-    "sortNum": 0,
-    "created": "2023-02-07T13:12:57.659Z",
-    "modified": "2023-02-07T13:12:57.659Z",
-    "headers": [],
-    "params": [],
-    "tests": []
-  },
-  {
-    "_id": "fafd7f8c-de69-4bb2-9dcb-6da2dd354839",
-    "colId": "history",
-    "containerId": "",
-    "name": "https://localhost/greetings",
+    "name": "https://localhost/users",
     "url": "https://localhost/users",
+    "method": "GET",
+    "sortNum": 0,
+    "created": "2023-02-08T10:23:46.229Z",
+    "modified": "2023-02-08T10:23:46.229Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "22e07899-b88f-412e-b6b1-5d856a54b8ff",
+    "colId": "history",
+    "containerId": "",
+    "name": "https://localhost/caves",
+    "url": "https://localhost/caves",
     "method": "POST",
     "sortNum": 0,
-    "created": "2023-02-07T13:14:04.946Z",
-    "modified": "2023-02-07T13:52:32.468Z",
+    "created": "2023-02-08T10:34:12.632Z",
+    "modified": "2023-02-08T10:34:12.632Z",
     "headers": [
       {
         "name": "Content-Type",
@@ -76,7 +32,7 @@
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n  \"firstName\": \"benoit\"\n}",
+      "raw": "{\n  \"nom\": \"Cave de Pierre\",\n  \"owner\": \"https://localhost/users/1\"\n}",
       "form": []
     },
     "tests": []
