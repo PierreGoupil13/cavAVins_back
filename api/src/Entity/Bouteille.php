@@ -115,20 +115,20 @@ class Bouteille
         return $this->caves;
     }
 
-    public function addCafe(Cave $cafe): self
+    public function addCave(Cave $cave): self
     {
-        if (!$this->caves->contains($cafe)) {
-            $this->caves->add($cafe);
-            $cafe->addBouteille($this);
+        if (!$this->caves->contains($cave)) {
+            $this->caves->add($cave);
+            $cave->addBouteille($this);
         }
 
         return $this;
     }
 
-    public function removeCafe(Cave $cafe): self
+    public function removeCave(Cave $cave): self
     {
-        if ($this->caves->removeElement($cafe)) {
-            $cafe->removeBouteille($this);
+        if ($this->caves->removeElement($cave)) {
+            $cave->removeBouteille($this);
         }
 
         return $this;

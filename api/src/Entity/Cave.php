@@ -35,7 +35,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
             uriTemplate: '/caves/unique/{id}',
         )
 
-    ]
+        ]
 )]
 class Cave
 {

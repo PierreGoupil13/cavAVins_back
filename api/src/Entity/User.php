@@ -14,6 +14,8 @@ use ApiPlatform\Metadata\GetCollection;
 use Doctrine\Common\Collections\Collection;
 use App\Controller\User\UserCountController;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
@@ -49,7 +51,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
         )
     ]
 )]
-class User
+class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -64,13 +66,17 @@ class User
     #[Groups(['read:Users', 'write:User'])]
     private ?string $lastName = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 255, unique: true)]
     #[Groups(['read:User', 'write:User'])]
     private ?string $email = null;
 
     #[ORM\Column(length: 255)]
     #[Groups(['write:User'])]
-    private ?string $pwd = null;
+    private ?string $password = null;
+
+    // Ajouter car necessaire pour implementer les interfaces
+    #[ORM\Column(type: 'json')]
+    private ?array $roles = [];
 
     #[ORM\OneToMany(mappedBy: 'owner', targetEntity: Cave::class)]
     #[Groups(['read:User'])]
@@ -122,18 +128,6 @@ class User
         return $this;
     }
 
-    public function getPwd(): ?string
-    {
-        return $this->pwd;
-    }
-
-    public function setPwd(string $pwd): self
-    {
-        $this->pwd = $pwd;
-
-        return $this;
-    }
-
     /**
      * @return Collection<int, Cave>
      */
@@ -142,25 +136,90 @@ class User
         return $this->caves;
     }
 
-    public function addCafe(Cave $cafe): self
+    public function addCave(Cave $cave): self
     {
-        if (!$this->caves->contains($cafe)) {
-            $this->caves->add($cafe);
-            $cafe->setOwner($this);
+        if (!$this->caves->contains($cave)) {
+            $this->caves->add($cave);
+            $cave->setOwner($this);
         }
 
         return $this;
     }
 
-    public function removeCafe(Cave $cafe): self
+    public function removeCave(Cave $cave): self
     {
-        if ($this->caves->removeElement($cafe)) {
+        if ($this->caves->removeElement($cave)) {
             // set the owning side to null (unless already changed)
-            if ($cafe->getOwner() === $this) {
-                $cafe->setOwner(null);
+            if ($cave->getOwner() === $this) {
+                $cave->setOwner(null);
             }
         }
 
         return $this;
+    }
+
+    // Elements relatif a la securite
+    /**
+     * The public representation of the user (e.g. a username, an email address, etc.)
+     *
+     * @see UserInterface
+     */
+    public function getUserIdentifier(): string
+    {
+        return (string) $this->getEmail();
+    }
+
+    /**
+     * @see UserInterface
+     */
+    public function getRoles(): array
+    {
+        $roles = $this->roles;
+        // guarantee every user at least has ROLE_USER
+        $roles[] = 'ROLE_USER';
+
+        return array_unique($roles);
+    }
+
+    public function setRoles(array $roles): self
+    {
+        $this->roles = $roles;
+
+        return $this;
+    }
+
+    /**
+     * @see PasswordAuthenticatedUserInterface
+     */
+    public function getPassword(): string
+    {
+        return $this->password;
+    }
+
+    public function setPassword(string $password): self
+    {
+        $this->password = $password;
+
+        return $this;
+    }
+
+    /**
+     * Returning a salt is only needed if you are not using a modern
+     * hashing algorithm (e.g. bcrypt or sodium) in your security.yaml.
+     *
+     * @see UserInterface
+     */
+    public function getSalt(): ?string
+    {
+        return null;
+    }
+
+    /**
+     * @see UserInterface
+     */
+    public function eraseCredentials()
+    {
+        // If you store any temporary, sensitive data on the user, clear it here
+        // $this->plainPassword = null;
     }
 }
