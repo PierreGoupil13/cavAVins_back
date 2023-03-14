@@ -2,17 +2,17 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Action\PlaceholderAction;
 use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\Put;
 use ApiPlatform\Metadata\Post;
 use ApiPlatform\Metadata\Delete;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\UserRepository;
-use Composer\XdebugHandler\Status;
 use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\GetCollection;
+use App\Controller\User\UserRegisterController;
 use Doctrine\Common\Collections\Collection;
-use App\Controller\User\UserCountController;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
@@ -31,16 +31,15 @@ use Symfony\Component\Serializer\Annotation\Groups;
             normalizationContext: ['groups' => ['read:Users']]
         ),
         new Post(
-            denormalizationContext: ['groups' => ['write:User']]
-        ),
-        new GetCollection(
-            name: 'count',
-            uriTemplate: '/users/all/count',
-            controller: UserCountController::class,
+            name: 'register_user',
+            uriTemplate: '/users/register',
+            controller: UserRegisterController::class,
+            denormalizationContext: ['groups' => ['write:User']],
             openapiContext: [
-                'summary' => 'Retrive the total number of users',
-                'description' => 'Retrive the total number of users',
-                'parameters' => []
+                'summary' => 'Create a new user',
+                'description' => 'Override the user creation to hash password',
+                'parameters' => [
+                ]
             ]
         ),
         new Put(
