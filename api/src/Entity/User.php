@@ -52,6 +52,13 @@ use Symfony\Component\Serializer\Annotation\Groups;
 )]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
+    // Constantes de clé dans l'api
+    const USER_EMAIL_API_KEY = 'email';
+    const USER_FIRST_NAME_API_KEY = 'firstName';
+    const USER_LAST_NAME_API_KEY = 'lastName';
+    const USER_PASSWORD_NAME_API_KEY = 'password';
+
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
