@@ -80,6 +80,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[Groups(['write:User'])]
     private ?string $password = null;
 
+    #[Groups(['write:User'])]
+    private ?string $plainPassword = null;
+
     // Ajouter car necessaire pour implementer les interfaces
     #[ORM\Column(type: 'json')]
     private ?array $roles = [];
@@ -210,6 +213,22 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     }
 
     /**
+     * Setter et Getter pour le plain password (intervient à la création d'un User et plus tard la modification)
+     */
+    public function getPlainPassword(): string
+    {
+        return $this->plainPassword;
+    }
+
+    public function setPlainPassword(string $plainPassword): self
+    {
+        $this->plainPassword = $plainPassword;
+
+        return $this;
+    }
+
+
+    /**
      * Returning a salt is only needed if you are not using a modern
      * hashing algorithm (e.g. bcrypt or sodium) in your security.yaml.
      *
@@ -226,6 +245,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function eraseCredentials()
     {
         // If you store any temporary, sensitive data on the user, clear it here
-        // $this->plainPassword = null;
+        $this->plainPassword = null;
     }
 }
