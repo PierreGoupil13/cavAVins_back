@@ -4,6 +4,7 @@ namespace App\Manager;
 
 use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class UserManager extends Manager
 {
@@ -18,20 +19,35 @@ class UserManager extends Manager
     {
 
     } */
+    private UserPasswordHasherInterface $userPasswordHasher;
 
-    public function __construct(EntityManagerInterface $em)
+    public function __construct(
+        EntityManagerInterface $em,
+        UserPasswordHasherInterface $userPasswordHasher
+    )
     {
         parent::__construct($em);
+        $this->userPasswordHasher = $userPasswordHasher;
     }
 
     public function createUser(mixed $data): User
     {
         $user = new User();
+
         $user->setFirstName($data['firstName']);
         $user->setLastName($data['lastName']);
         $user->setEmail($data['email']);
-        $user->setPassword($data['password']);
-        return $user;
 
+        // Gère le hashage et persitance du password
+        $user->setPlainPassword($data['password']);
+        $this->hashPassword($user);
+
+        return $user;
+    }
+
+    public function hashPassword(User $user)
+    {
+        $user->setPassword($this->userPasswordHasher->hashPassword($user, $user->getPlainPassword()));
+        $user->eraseCredentials();
     }
 }

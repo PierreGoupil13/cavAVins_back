@@ -24,7 +24,6 @@ class UserRegisterController
 
         // Extrait les infos de la payload
         $data = $payloadManager->extractUserPayload($payload);
-        dd($data);
         // Crée un nouveau User
         $user = $userManager->createUser($data);
 
