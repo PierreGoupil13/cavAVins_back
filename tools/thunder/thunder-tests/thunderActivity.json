@@ -78,5 +78,28 @@
       "form": []
     },
     "tests": []
+  },
+  {
+    "_id": "94e7c82f-d132-40c8-ae03-87b8c3e7e161",
+    "colId": "history",
+    "containerId": "",
+    "name": "https://localhost/users/unique",
+    "url": "https://localhost/users/unique/1",
+    "method": "PUT",
+    "sortNum": 0,
+    "created": "2023-03-15T11:15:20.631Z",
+    "modified": "2023-03-15T11:17:11.784Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"password\": \"toto\"\n}",
+      "form": []
+    },
+    "auth": {
+      "type": "bearer",
+      "bearer": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE2Nzg4Nzc5NzUsImV4cCI6MTY3ODg4MTU3NSwicm9sZXMiOlsiUk9MRV9VU0VSIl0sInVzZXJuYW1lIjoicC5nb3VwaWwzNTZAZ21haWwuY29tIn0.kmjY68gxXrkXX40SrsSHngnVFnzK1kwvkBUfgZ2qIaXmUdJefuRtkKowgH3r1zJW-maCFa5-AzzQf0hdXfJJKCygiKjEQBKX861nlQ44bOyGzmZ6TYuHCj8wN8vF5_kGQ5OrGOBburxBeOh4xcvEIgGKBWeAkmbRJEKrsGmVidPjmESABXpUySOO7lZf21ceCqBarMeDVCH1Wi2IUWnAVHHj4U_NQMTOjtsGOV49CwrrLaLifVDvd7w9I7NGNa0AotH6DlxYWP0bDMSyorClWb8z-KeNfScMtOkFMFp3yQe8i0IW8ZJJlE8DnOGDU-2bhrcO7vuLjrILuFwRarCwfQ"
+    },
+    "tests": []
   }
 ]

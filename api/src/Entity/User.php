@@ -11,6 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
 use App\Repository\UserRepository;
 use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\GetCollection;
+use ApiPlatform\Metadata\Patch;
 use App\Controller\User\UserRegisterController;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -43,7 +44,12 @@ use Symfony\Component\Serializer\Annotation\Groups;
             ]
         ),
         new Put(
-            uriTemplate: '/users/unique/{id}'
+            uriTemplate: '/users/unique/{id}/firstName',
+            denormalizationContext: ['groups' => ['write:PutFirstName']],
+        ),
+        new Put(
+            uriTemplate: '/users/unique/{id}/lastName',
+            denormalizationContext: ['groups' => ['write:PutlastName']],
         ),
         new Delete(
             uriTemplate: '/users/unique/{id}'
@@ -65,11 +71,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    #[Groups(['read:Users', 'read:Cave', 'write:User'])]
+    #[Groups(['read:Users', 'read:Cave', 'write:User', 'write:PutFirstName'])]
     private ?string $firstName = null;
 
     #[ORM\Column(length: 255)]
-    #[Groups(['read:Users', 'write:User'])]
+    #[Groups(['read:Users', 'write:User', 'write:PutLastName'])]
     private ?string $lastName = null;
 
     #[ORM\Column(length: 255, unique: true)]
