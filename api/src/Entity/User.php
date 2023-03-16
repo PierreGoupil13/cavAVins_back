@@ -12,6 +12,7 @@ use App\Repository\UserRepository;
 use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\GetCollection;
 use ApiPlatform\Metadata\Patch;
+use App\Controller\User\UserChangePasswordController;
 use App\Controller\User\UserRegisterController;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -32,7 +33,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
             normalizationContext: ['groups' => ['read:Users']]
         ),
         new Post(
-            name: 'register_user',
+            name: 'registerUser',
             uriTemplate: '/users/register',
             controller: UserRegisterController::class,
             denormalizationContext: ['groups' => ['write:User']],
@@ -49,7 +50,18 @@ use Symfony\Component\Serializer\Annotation\Groups;
         ),
         new Put(
             uriTemplate: '/users/unique/{id}/lastName',
-            denormalizationContext: ['groups' => ['write:PutlastName']],
+            denormalizationContext: ['groups' => ['write:PutLastName']],
+        ),
+        new Put(
+            name: 'changePassword',
+            uriTemplate: '/users/unique/{id}/changePassword',
+            controller: UserChangePasswordController::class,
+            openapiContext: [
+                'summary' => 'Change password of an existing user',
+                'description' => 'Endpoint to change a password',
+                'parameters' => [
+                ]
+            ]
         ),
         new Delete(
             uriTemplate: '/users/unique/{id}'
@@ -63,6 +75,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     const USER_FIRST_NAME_API_KEY = 'firstName';
     const USER_LAST_NAME_API_KEY = 'lastName';
     const USER_PASSWORD_NAME_API_KEY = 'password';
+    const USER_OLD_PASSWORD_NAME_API_KEY = 'oldPassword';
+    const USER_NEW_PASSWORD_NAME_API_KEY = 'newPassword';
+    const USER_NEW_PASSWORD_CONFIRMATION_NAME_API_KEY = 'newPasswordConfirmation';
+
 
 
     #[ORM\Id]
@@ -232,7 +248,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
-
 
     /**
      * Returning a salt is only needed if you are not using a modern

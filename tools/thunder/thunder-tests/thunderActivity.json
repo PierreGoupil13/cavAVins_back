@@ -69,12 +69,12 @@
     "method": "POST",
     "sortNum": 0,
     "created": "2023-03-15T10:59:34.887Z",
-    "modified": "2023-03-15T11:03:50.506Z",
+    "modified": "2023-03-16T14:23:24.950Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n  \"email\": \"p.bambino@gmail.com\",\n  \"password\": \"pwdtest\"\n}",
+      "raw": "{\n  \"email\": \"p.bambino@gmail.com\",\n  \"password\": \"toto\"\n}",
       "form": []
     },
     "tests": []
@@ -99,6 +99,75 @@
     "auth": {
       "type": "bearer",
       "bearer": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE2Nzg4Nzc5NzUsImV4cCI6MTY3ODg4MTU3NSwicm9sZXMiOlsiUk9MRV9VU0VSIl0sInVzZXJuYW1lIjoicC5nb3VwaWwzNTZAZ21haWwuY29tIn0.kmjY68gxXrkXX40SrsSHngnVFnzK1kwvkBUfgZ2qIaXmUdJefuRtkKowgH3r1zJW-maCFa5-AzzQf0hdXfJJKCygiKjEQBKX861nlQ44bOyGzmZ6TYuHCj8wN8vF5_kGQ5OrGOBburxBeOh4xcvEIgGKBWeAkmbRJEKrsGmVidPjmESABXpUySOO7lZf21ceCqBarMeDVCH1Wi2IUWnAVHHj4U_NQMTOjtsGOV49CwrrLaLifVDvd7w9I7NGNa0AotH6DlxYWP0bDMSyorClWb8z-KeNfScMtOkFMFp3yQe8i0IW8ZJJlE8DnOGDU-2bhrcO7vuLjrILuFwRarCwfQ"
+    },
+    "tests": []
+  },
+  {
+    "_id": "446cc8eb-006e-41f2-b8f9-60c444d4a35b",
+    "colId": "history",
+    "containerId": "",
+    "name": "https://localhost/users/unique/1/changePassword",
+    "url": "https://localhost/users/unique/43/changePassword",
+    "method": "PUT",
+    "sortNum": 0,
+    "created": "2023-03-15T13:51:15.459Z",
+    "modified": "2023-03-16T14:55:20.319Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"email\": \"p.bambino@gmail.com\",\n  \"oldPassword\": \"pwdtest\",\n  \"newPassword\": \"pwdtest\",\n  \"newPasswordConfirmation\": \"pwdtest\"\n}",
+      "form": []
+    },
+    "auth": {
+      "type": "bearer",
+      "bearer": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE2Nzg5NzY2MDQsImV4cCI6MTY3ODk4MDIwNCwicm9sZXMiOlsiUk9MRV9VU0VSIl0sInVzZXJuYW1lIjoicC5iYW1iaW5vQGdtYWlsLmNvbSJ9.lj7AjuH2ockefZSa_0GWzlGCsrS7vf0XYwGx7il8kNEUNHyqw2dz0oZswS81tfhbRUx3S4RL2l8MBzf_9ctLOzsRpi40ztoswel1Zxq-nZAsP7gwho-u0RQBOWx4jGn2DukJv-IVunjliUZfTYQ7G-wQcVoNCpV8cpRjAmqB4gRuGqkHk54JrY0zKzFsvPhiB_jr7ZH9Fli-4MXwVarI10pWc1h8Pk9h6u1U4QfTpURwggESF6zGQEBm7JgZo2oWkDKh6D6QhHhfkeECiuC8PcIVShTDLhP7gvI5f4rMKFwBr4Dn8qquhuKCingd1cPEIwq02KXm_1YX8aewk108hw"
+    },
+    "tests": []
+  },
+  {
+    "_id": "2c4ca65c-6de9-4bfd-a109-4d18c00f0c00",
+    "colId": "history",
+    "containerId": "",
+    "name": "https://localhost/users/unique/1/changePassword",
+    "url": "https://localhost/users/unique/1/changePassword",
+    "method": "PUT",
+    "sortNum": 0,
+    "created": "2023-03-15T13:51:34.014Z",
+    "modified": "2023-03-15T15:26:00.597Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"password\": \"toto\",\n  \"newPassword\": \"pwdcomplique\",\n  \"newPasswordConfirmation\": \"pwdcomplique\",\n  \"email\": \"p.bambino@gmail.com\"\n}",
+      "form": []
+    },
+    "auth": {
+      "type": "bearer",
+      "bearer": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE2Nzg4OTM5MTcsImV4cCI6MTY3ODg5NzUxNywicm9sZXMiOlsiUk9MRV9VU0VSIl0sInVzZXJuYW1lIjoicC5iYW1iaW5vQGdtYWlsLmNvbSJ9.G3GqDGXcrCsUVZf6zIjffyu5efk7rlkbr386_Fp-fq1IJycuiO1Emy5L-GtvZszGGm6bkVUYG3ieh1ndQC1GohGkMyoJwSFN0Q0g-9CZNZLPVZZ1wbQ-HdWNjbYEq3-v-FoRUC9bwoscDLi9y5zuGATGysYw-whKrWIfMBlLoK11UPM2vmwGxNrSkEssWGy7QtIf7sHInUgBEr0vg1-eMpe0Xfsed10TYrSpbpbEhoBsVPpaf2-023c2dRBnE0YNyEMlKTi268xqUipMfq3LVhtg4t9wp6ZqZeKLiehj_I8hSdUhVvZcPraW7G5mSdft7ewODH5nSqOjGKqmwMM5BA"
+    },
+    "tests": []
+  },
+  {
+    "_id": "d29be60f-185e-412c-aa26-5f6bd84168e4",
+    "colId": "history",
+    "containerId": "",
+    "name": "https://localhost/users/unique/43/changePassword",
+    "url": "https://localhost/users/unique/43/changePassword",
+    "method": "PUT",
+    "sortNum": 0,
+    "created": "2023-03-15T15:26:32.785Z",
+    "modified": "2023-03-15T15:29:28.911Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"oldPassword\": \"totrrrro\",\n  \"newPassword\": \"pwdcomplique\",\n  \"newPasswordConfirmation\": \"pwdcomplique\",\n  \"email\": \"p.bambino@gmail.com\"\n}",
+      "form": []
+    },
+    "auth": {
+      "type": "bearer",
+      "bearer": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE2Nzg4OTM5MTcsImV4cCI6MTY3ODg5NzUxNywicm9sZXMiOlsiUk9MRV9VU0VSIl0sInVzZXJuYW1lIjoicC5iYW1iaW5vQGdtYWlsLmNvbSJ9.G3GqDGXcrCsUVZf6zIjffyu5efk7rlkbr386_Fp-fq1IJycuiO1Emy5L-GtvZszGGm6bkVUYG3ieh1ndQC1GohGkMyoJwSFN0Q0g-9CZNZLPVZZ1wbQ-HdWNjbYEq3-v-FoRUC9bwoscDLi9y5zuGATGysYw-whKrWIfMBlLoK11UPM2vmwGxNrSkEssWGy7QtIf7sHInUgBEr0vg1-eMpe0Xfsed10TYrSpbpbEhoBsVPpaf2-023c2dRBnE0YNyEMlKTi268xqUipMfq3LVhtg4t9wp6ZqZeKLiehj_I8hSdUhVvZcPraW7G5mSdft7ewODH5nSqOjGKqmwMM5BA"
     },
     "tests": []
   }
