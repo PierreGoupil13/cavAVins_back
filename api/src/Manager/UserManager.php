@@ -3,6 +3,7 @@
 namespace App\Manager;
 
 use App\Entity\User;
+use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
@@ -20,14 +21,17 @@ class UserManager extends Manager
 
     } */
     private UserPasswordHasherInterface $userPasswordHasher;
+    private UserRepository $userRepository;
 
     public function __construct(
         EntityManagerInterface $em,
-        UserPasswordHasherInterface $userPasswordHasher
+        UserPasswordHasherInterface $userPasswordHasher,
+        UserRepository $userRepository
     )
     {
         parent::__construct($em);
         $this->userPasswordHasher = $userPasswordHasher;
+        $this->userRepository = $userRepository;
     }
 
     public function createUser(mixed $data): User
@@ -49,5 +53,34 @@ class UserManager extends Manager
     {
         $user->setPassword($this->userPasswordHasher->hashPassword($user, $user->getPlainPassword()));
         $user->eraseCredentials();
+    }
+
+    public function validateUserOldPassword(array $data)
+    {
+        if (!isset($data['email']) || !isset($data['oldPassword'])) {
+            return null; // Trouver comment retourner une erreur
+        }
+        $email = $data['email'];
+        $password = $data['oldPassword'];
+        $user = $this->userRepository->findOneByEmail($email);
+        if($user === null){
+            return null; // Trouver comment retourner une erreur
+        }
+        if ($this->userPasswordHasher->isPasswordValid($user,$password)) {
+            return $user;
+        }
+        return null;
+    }
+
+    public function changeUserPassword(User $user, array $data) {
+        // Check les deux password (existence et validité)
+        if (isset($data['newPassword']) && isset($data['newPasswordConfirmation'])){
+            if ($data['newPassword'] === $data['newPasswordConfirmation']) {
+                // Hash et persiste le nouveau password
+                $user->setPlainPassword($data['newPassword']);
+                $this->hashPassword($user);
+                return $user;
+            }
+        }
     }
 }

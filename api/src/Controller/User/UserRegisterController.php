@@ -5,8 +5,6 @@ namespace App\Controller\User;
 use App\Entity\User;
 use App\Manager\PayloadManager;
 use App\Manager\UserManager;
-use App\Repository\UserRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Attribute\AsController;
 
