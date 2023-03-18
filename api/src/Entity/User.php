@@ -26,10 +26,12 @@ use Symfony\Component\Serializer\Annotation\Groups;
     operations: [
         new Get(
             uriTemplate: '/users/unique/{id}',
+            //security: "is_granted('ROLE_ADMIN')", Gestion de rôle ce fait comme cela
             normalizationContext: ['groups' => ['read:Users', 'read:User', 'read:Caves']],
         ),
         new GetCollection(
             uriTemplate: '/users/all',
+            //security: "is_granted('ROLE_ADMIN')",
             normalizationContext: ['groups' => ['read:Users']]
         ),
         new Post(
@@ -64,7 +66,8 @@ use Symfony\Component\Serializer\Annotation\Groups;
             ]
         ),
         new Delete(
-            uriTemplate: '/users/unique/{id}'
+            uriTemplate: '/users/unique/{id}',
+            security: "is_granted('ROLE_ADMIN')"
         )
     ]
 )]
