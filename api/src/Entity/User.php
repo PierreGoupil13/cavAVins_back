@@ -2,7 +2,6 @@
 
 namespace App\Entity;
 
-use ApiPlatform\Action\PlaceholderAction;
 use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\Put;
 use ApiPlatform\Metadata\Post;
@@ -11,8 +10,8 @@ use Doctrine\ORM\Mapping as ORM;
 use App\Repository\UserRepository;
 use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\GetCollection;
-use ApiPlatform\Metadata\Patch;
 use App\Controller\User\UserChangePasswordController;
+use App\Controller\User\UserLogOutController;
 use App\Controller\User\UserRegisterController;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -41,9 +40,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
             denormalizationContext: ['groups' => ['write:User']],
             openapiContext: [
                 'summary' => 'Create a new user',
-                'description' => 'Override the user creation to hash password',
-                'parameters' => [
-                ]
+                'description' => 'Create a new user with a hashed password'
             ]
         ),
         new Put(
@@ -105,7 +102,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[Groups(['write:User'])]
     private ?string $password = null;
 
-    #[Groups(['write:User'])]
     private ?string $plainPassword = null;
 
     // Ajouter car necessaire pour implementer les interfaces
@@ -115,6 +111,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'owner', targetEntity: Cave::class)]
     #[Groups(['read:User'])]
     private Collection $caves;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $jwt = null;
 
     public function __construct()
     {
@@ -270,5 +269,17 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         $this->plainPassword = null;
+    }
+
+    public function getJwt(): ?string
+    {
+        return $this->jwt;
+    }
+
+    public function setJwt(?string $jwt): self
+    {
+        $this->jwt = $jwt;
+
+        return $this;
     }
 }
