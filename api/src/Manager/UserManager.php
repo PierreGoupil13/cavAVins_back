@@ -7,6 +7,14 @@ use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
+/**
+ * @category Manager
+ * @package App\Manager\User
+ * @author Pierre Goupil <p.goupil356@gmail.com>
+ *
+ * Manager des users. Comporte toutes les méthodes pouvant être nécessaire dans le cadre de la
+ * gestion d'un User
+ */
 class UserManager extends Manager
 {
     // Le container contient tout les services, mais l'ancienne manière de faire, avant l'injection de services
@@ -34,10 +42,19 @@ class UserManager extends Manager
         $this->userRepository = $userRepository;
     }
 
+    /**
+     * Fonction de création d'un User
+     *
+     * @param mixed $data Informations pour l'inscription d'un nouveau User
+     *
+     * @return User Retourne le nouveau User crée
+     */
     public function createUser(mixed $data): User
     {
+        // Instancie un nouveau User
         $user = new User();
 
+        // Set ses properties
         $user->setFirstName($data['firstName']);
         $user->setLastName($data['lastName']);
         $user->setEmail($data['email']);
@@ -49,13 +66,27 @@ class UserManager extends Manager
         return $user;
     }
 
+    /**
+     * Fonction de Hashage d'un utilisateur
+     *
+     * @param User $user
+     *
+     * @return none Pas besoin de retourner quelque chose
+     */
     public function hashPassword(User $user)
     {
         $user->setPassword($this->userPasswordHasher->hashPassword($user, $user->getPlainPassword()));
         $user->eraseCredentials();
     }
 
-    public function validateUserOldPassword(array $data)
+    /**
+     * Fonction qui valide le password passé en payload
+     *
+     * @param array $data Tableau contenant les infos de la payload
+     *
+     * @return bool|User
+     */
+    public function validateUserOldPassword(array $data): bool|User
     {
         if (!isset($data['email']) || !isset($data['oldPassword'])) {
             return null; // Trouver comment retourner une erreur
@@ -72,7 +103,16 @@ class UserManager extends Manager
         return null;
     }
 
-    public function changeUserPassword(User $user, array $data) {
+    /**
+     * Fonction point d'entrée et execute le changement de password
+     *
+     * @param User $user
+     * @param array $data informations de la payload
+     *
+     * @return User
+     */
+    public function changeUserPassword(User $user, array $data):User
+    {
         // Check les deux password (existence et validité)
         if (isset($data['newPassword']) && isset($data['newPasswordConfirmation'])){
             if ($data['newPassword'] === $data['newPasswordConfirmation']) {
@@ -84,6 +124,14 @@ class UserManager extends Manager
         }
     }
 
+    /**
+     * Update et persist un token JWT en base
+     *
+     * @param User $user
+     * @param string $token
+     *
+     * @return none
+     */
     public function updateJwtToken(User $user, string $token) {
         $user->setJwt($token);
         $this->em->flush();
