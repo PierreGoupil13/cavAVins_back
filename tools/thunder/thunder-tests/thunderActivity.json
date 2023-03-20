@@ -46,17 +46,13 @@
     "method": "POST",
     "sortNum": 0,
     "created": "2023-03-15T10:59:22.564Z",
-    "modified": "2023-03-15T11:00:52.346Z",
+    "modified": "2023-03-20T13:56:27.731Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n  \"firstName\": \"Pedro\",\n  \"lastName\": \"Bambino\",\n  \"email\": \"p.bambino@gmail.com\",\n  \"password\": \"pwdtest\"\n}",
+      "raw": "{\n  \"firstName\": \"Pedro\",\n  \"lastName\": \"Bambino\",\n  \"email\": \"p.popo@gmail.com\",\n  \"password\": \"pwdtest\"\n}",
       "form": []
-    },
-    "auth": {
-      "type": "bearer",
-      "bearer": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE2Nzg4Nzc5NzUsImV4cCI6MTY3ODg4MTU3NSwicm9sZXMiOlsiUk9MRV9VU0VSIl0sInVzZXJuYW1lIjoicC5nb3VwaWwzNTZAZ21haWwuY29tIn0.kmjY68gxXrkXX40SrsSHngnVFnzK1kwvkBUfgZ2qIaXmUdJefuRtkKowgH3r1zJW-maCFa5-AzzQf0hdXfJJKCygiKjEQBKX861nlQ44bOyGzmZ6TYuHCj8wN8vF5_kGQ5OrGOBburxBeOh4xcvEIgGKBWeAkmbRJEKrsGmVidPjmESABXpUySOO7lZf21ceCqBarMeDVCH1Wi2IUWnAVHHj4U_NQMTOjtsGOV49CwrrLaLifVDvd7w9I7NGNa0AotH6DlxYWP0bDMSyorClWb8z-KeNfScMtOkFMFp3yQe8i0IW8ZJJlE8DnOGDU-2bhrcO7vuLjrILuFwRarCwfQ"
     },
     "tests": []
   },

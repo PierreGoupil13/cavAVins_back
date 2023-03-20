@@ -5,7 +5,10 @@ namespace App\Manager;
 use App\Entity\User;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\Mailer\MailerInterface;
+use Symfony\Component\Mime\Email;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
+use Symfony\Component\Mime\RawMessage;
 
 /**
  * @category Manager
@@ -30,16 +33,19 @@ class UserManager extends Manager
     } */
     private UserPasswordHasherInterface $userPasswordHasher;
     private UserRepository $userRepository;
+    private MailerManager $mailerManager;
 
     public function __construct(
         EntityManagerInterface $em,
         UserPasswordHasherInterface $userPasswordHasher,
-        UserRepository $userRepository
+        UserRepository $userRepository,
+        MailerManager $mailerManager
     )
     {
         parent::__construct($em);
         $this->userPasswordHasher = $userPasswordHasher;
         $this->userRepository = $userRepository;
+        $this->mailerManager = $mailerManager;
     }
 
     /**
@@ -62,6 +68,11 @@ class UserManager extends Manager
         // Gère le hashage et persitance du password
         $user->setPlainPassword($data['password']);
         $this->hashPassword($user);
+
+        // Test email
+        $email = $this->mailerManager->createEmail($user);
+        $this->mailerManager->sendEmail($email);
+
 
         return $user;
     }
