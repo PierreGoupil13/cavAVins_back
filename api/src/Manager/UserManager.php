@@ -83,4 +83,9 @@ class UserManager extends Manager
             }
         }
     }
+
+    public function updateJwtToken(User $user, string $token) {
+        $user->setJwt($token);
+        $this->em->flush();
+    }
 }

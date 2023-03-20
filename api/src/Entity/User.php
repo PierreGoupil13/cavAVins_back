@@ -6,6 +6,7 @@ use ApiPlatform\Metadata\Get;
 use ApiPlatform\Metadata\Put;
 use ApiPlatform\Metadata\Post;
 use ApiPlatform\Metadata\Delete;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use App\Repository\UserRepository;
 use ApiPlatform\Metadata\ApiResource;
@@ -112,8 +113,10 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[Groups(['read:User'])]
     private Collection $caves;
 
-    #[ORM\Column(length: 255, nullable: true)]
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $jwt = null;
+
+
 
     public function __construct()
     {
@@ -276,6 +279,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->jwt;
     }
 
+    /**
+     * [Description for setJwt]
+     *
+     * @param string|null $jwt
+     *
+     * @return self
+     *
+     */
     public function setJwt(?string $jwt): self
     {
         $this->jwt = $jwt;
