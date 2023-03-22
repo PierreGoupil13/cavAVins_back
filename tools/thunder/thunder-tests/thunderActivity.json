@@ -4,13 +4,17 @@
     "colId": "history",
     "containerId": "",
     "name": "https://localhost/users",
-    "url": "https://localhost/users",
+    "url": "https://localhost/users/unique/43",
     "method": "GET",
     "sortNum": 0,
     "created": "2023-02-08T10:23:46.229Z",
-    "modified": "2023-02-08T10:23:46.229Z",
+    "modified": "2023-03-20T14:57:00.376Z",
     "headers": [],
     "params": [],
+    "auth": {
+      "type": "bearer",
+      "bearer": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE2NzkzMTg4MzAsImV4cCI6MTY3OTMyMjQzMCwicm9sZXMiOlsiUk9MRV9VU0VSIl0sInVzZXJuYW1lIjoicC5iYW1iaW5vQGdtYWlsLmNvbSJ9.HrYZ8q3rdjBFY1lQIwc9OSioNRpIfOS1JpIIvqmwHk-nOc_wmBLYW4Ai8j64hKLm7tpU0XrYmcLV4C0ZtgROaPdQTqgr_vmy9NHyHJYhiRRogfjxcgHv85TQL1S4FYBjdRh6h8O07AfUU8ubaGF-VurpIK7An-asCbnid3AnQTjh18sFWwEbcB8KekMTVfguUYqiSJMqEM-BzU85smcLNU6wbXd4RPFcXyxx8WMa8LBMZQkFzBzLUDp32O7Jx_WHTW2qv8SpknU_p5nwah5COPQKhIx-Cws-PHDJ2c1xaFJunG0yF4jfDLN7nCc_FV2bWax7WZD5AhDc7FddYC1csg"
+    },
     "tests": []
   },
   {
@@ -46,12 +50,12 @@
     "method": "POST",
     "sortNum": 0,
     "created": "2023-03-15T10:59:22.564Z",
-    "modified": "2023-03-20T13:56:27.731Z",
+    "modified": "2023-03-21T08:13:26.220Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n  \"firstName\": \"Pedro\",\n  \"lastName\": \"Bambino\",\n  \"email\": \"p.popo@gmail.com\",\n  \"password\": \"pwdtest\"\n}",
+      "raw": "{\n  \"firstName\": \"Pedro\",\n  \"lastName\": \"Bambino\",\n  \"email\": \"p.gogo@gmail.com\",\n  \"password\": \"pwdtest\"\n}",
       "form": []
     },
     "tests": []
@@ -65,12 +69,12 @@
     "method": "POST",
     "sortNum": 0,
     "created": "2023-03-15T10:59:34.887Z",
-    "modified": "2023-03-20T09:37:14.750Z",
+    "modified": "2023-03-22T13:49:11.963Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n  \"email\": \"p.bambino@gmail.com\",\n  \"password\": \"pwdtest\"\n}",
+      "raw": "{\n  \"email\": \"p.goupil356@gmail.com\",\n  \"password\": \"pwdtest\"\n}",
       "form": []
     },
     "tests": []
@@ -149,21 +153,73 @@
     "colId": "history",
     "containerId": "",
     "name": "https://localhost/users/unique/43/changePassword",
-    "url": "https://localhost/users/unique/43/changePassword",
+    "url": "https://localhost/users/unique/88/changePassword",
     "method": "PUT",
     "sortNum": 0,
     "created": "2023-03-15T15:26:32.785Z",
-    "modified": "2023-03-15T15:29:28.911Z",
+    "modified": "2023-03-22T13:53:46.168Z",
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
-      "raw": "{\n  \"oldPassword\": \"totrrrro\",\n  \"newPassword\": \"pwdcomplique\",\n  \"newPasswordConfirmation\": \"pwdcomplique\",\n  \"email\": \"p.bambino@gmail.com\"\n}",
+      "raw": "{\n  \"oldPassword\": \"pwdtest\",\n  \"newPassword\": \"pwdtest\",\n  \"newPasswordConfirmation\": \"pwdtest\",\n  \"email\": \"p.goupil356@gmail.com\"\n}",
       "form": []
     },
     "auth": {
       "type": "bearer",
-      "bearer": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE2Nzg4OTM5MTcsImV4cCI6MTY3ODg5NzUxNywicm9sZXMiOlsiUk9MRV9VU0VSIl0sInVzZXJuYW1lIjoicC5iYW1iaW5vQGdtYWlsLmNvbSJ9.G3GqDGXcrCsUVZf6zIjffyu5efk7rlkbr386_Fp-fq1IJycuiO1Emy5L-GtvZszGGm6bkVUYG3ieh1ndQC1GohGkMyoJwSFN0Q0g-9CZNZLPVZZ1wbQ-HdWNjbYEq3-v-FoRUC9bwoscDLi9y5zuGATGysYw-whKrWIfMBlLoK11UPM2vmwGxNrSkEssWGy7QtIf7sHInUgBEr0vg1-eMpe0Xfsed10TYrSpbpbEhoBsVPpaf2-023c2dRBnE0YNyEMlKTi268xqUipMfq3LVhtg4t9wp6ZqZeKLiehj_I8hSdUhVvZcPraW7G5mSdft7ewODH5nSqOjGKqmwMM5BA"
+      "bearer": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE2Nzk0OTI5NTEsImV4cCI6MTY3OTQ5NjU1MSwicm9sZXMiOlsiUk9MRV9VU0VSIl0sInVzZXJuYW1lIjoicC5nb3VwaWwzNTZAZ21haWwuY29tIn0.eZo-dIJdujlWyXx_h5YywlEFI8bEOFAFCmObqk0Zs6s1fG9Ht6Ih6-HdElF6aZzZMjXNru_OVPS-MhbnINJOXqqqf6CZc6jJnb2emv5r_3Y_9sg6O9fsZ-PGQRxtxis91wAwxFn1Ntvfbey8WjwtW9HhDC4EujfFKt1bcvC8Z_qUbmxCSwrWl1Sd7DZM2-QgWFabU-RQmCTaDgcBpqWQvsvNtil3EJ1YS3EHBlkOTHAg0hdJ487miNgQe6_A2feCrkivCCFZoZvRCckOWA-jtUDiF5BuYUZf5RTkNVF9-4W8WKT9PQPbOyXdezLftj1cWo-PYpVAHAkGo9e5U0aCDw"
+    },
+    "tests": []
+  },
+  {
+    "_id": "14cc86bf-29ea-4333-a1b4-bf35f9163c7c",
+    "colId": "history",
+    "containerId": "",
+    "name": "https://localhost/users/unique/changePwdToken",
+    "url": "https://localhost/users/unique/changePwdToken",
+    "method": "GET",
+    "sortNum": 0,
+    "created": "2023-03-21T09:50:33.920Z",
+    "modified": "2023-03-21T09:50:33.920Z",
+    "headers": [],
+    "params": [],
+    "tests": []
+  },
+  {
+    "_id": "69d1b7b7-e35f-4b60-b787-c2f7be46287a",
+    "colId": "history",
+    "containerId": "",
+    "name": "https://localhost/users/changePwdToken",
+    "url": "https://localhost/users/changePwdToken",
+    "method": "GET",
+    "sortNum": 0,
+    "created": "2023-03-21T09:52:03.969Z",
+    "modified": "2023-03-21T09:52:18.051Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"email\": \"p.goupil356@gmail.com\"\n}",
+      "form": []
+    },
+    "tests": []
+  },
+  {
+    "_id": "64032990-2563-4d7b-87be-496915710568",
+    "colId": "history",
+    "containerId": "",
+    "name": "https://localhost/users/changePwdToken",
+    "url": "https://localhost//contexts/User",
+    "method": "PUT",
+    "sortNum": 0,
+    "created": "2023-03-21T09:52:27.888Z",
+    "modified": "2023-03-22T13:45:13.813Z",
+    "headers": [],
+    "params": [],
+    "body": {
+      "type": "json",
+      "raw": "{\n  \"email\": \"a.goupil@gmail.com\",\n  \"newPassword\": \"pwd\",\n  \"resetJwt\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE2Nzk0ODM3NTIsImV4cCI6MTY3OTQ4NzM1Miwicm9sZXMiOlsiUk9MRV9VU0VSIl0sInVzZXJuYW1lIjoicy5tYXVnZWFpc0BnbWFpbC5jb20ifQ.I9vnUQBgZ0-MJQ9R6kLQMwqmTJlm7g8O1UmJxNRiWdsm_Kvjd8o24bIWu3EuFbe0XYGrQGdTr6Itagv05lsHVrAYu8rGZ2rBrNJeyk5T6ybULjHHiFuAJO1VzYKZQtv4TpzubHZhLeYFGCM01Qf5cAdTONm0eaIE4VCp9BGPkB5vWFoxPu6Nw0gkkl_VrnWyIjZD5X-Ss1p8_e_yCQsZHgDhPLuunQRSsbd832QJn_o8Tjvp77TOQvpwiv-z7jTbwx7a4TeP_8Km6DEaSbnL5BAUZFcWd6kQSn_YOWbxY50_2FBrmPYQ1PUZ28CIlo-uqJyoTCrQTpxUgP0z296I0A\",\n  \"newPasswordConfirmation\": \"pwd\"\n}",
+      "form": []
     },
     "tests": []
   }

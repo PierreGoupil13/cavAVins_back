@@ -27,18 +27,19 @@ use Symfony\Component\Serializer\Annotation\Groups;
         new Get(
             uriTemplate: '/users/unique/{id}',
             //security: "is_granted('ROLE_ADMIN')", Gestion de rôle ce fait comme cela
-            normalizationContext: ['groups' => ['read:Users', 'read:User', 'read:Caves']],
+            normalizationContext: ['groups' => [User::READ_USER]],
         ),
         new GetCollection(
             uriTemplate: '/users/all',
             //security: "is_granted('ROLE_ADMIN')",
-            normalizationContext: ['groups' => ['read:Users']]
+            normalizationContext: ['groups' => [User::READ_USER]]
         ),
         new Post(
             name: 'registerUser',
             uriTemplate: '/users/register',
             controller: UserRegisterController::class,
-            denormalizationContext: ['groups' => ['write:User']],
+            denormalizationContext: ['groups' => [User::REGISTER_USER]],
+            normalizationContext: ['groups' => [User::READ_USER]],
             openapiContext: [
                 'summary' => 'Create a new user',
                 'description' => 'Create a new user with a hashed password'
@@ -46,16 +47,20 @@ use Symfony\Component\Serializer\Annotation\Groups;
         ),
         new Put(
             uriTemplate: '/users/unique/{id}/firstName',
-            denormalizationContext: ['groups' => ['write:PutFirstName']],
+            denormalizationContext: ['groups' => [User::PUT_FIRST_NAME]],
+            normalizationContext: ['groups' => [User::READ_FIRST_NAME]],
         ),
         new Put(
             uriTemplate: '/users/unique/{id}/lastName',
-            denormalizationContext: ['groups' => ['write:PutLastName']],
+            denormalizationContext: ['groups' => [User::PUT_LAST_NAME]],
+            normalizationContext: ['groups' => [User::READ_LAST_NAME]],
         ),
         new Put(
             name: 'changePassword',
             uriTemplate: '/users/unique/{id}/changePassword',
             controller: UserChangePasswordController::class,
+            denormalizationContext: ['groups' => [User::PUT_PASSWORD]],
+            normalizationContext: ['groups'=> [User::READ_PASSWORD]],
             openapiContext: [
                 'summary' => 'Change password of an existing user',
                 'description' => 'Endpoint to change a password',
@@ -80,27 +85,54 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     const USER_NEW_PASSWORD_NAME_API_KEY = 'newPassword';
     const USER_NEW_PASSWORD_CONFIRMATION_NAME_API_KEY = 'newPasswordConfirmation';
 
+    // Constantes de serialisation
+    const READ_USER = 'read:Users';
+    const REGISTER_USER = 'read:registerUser';
+    const PUT_FIRST_NAME = 'write:putLastName';
+    const PUT_LAST_NAME = 'write:putFirstName';
+    const PUT_PASSWORD = 'write:putPassword';
+    const READ_PASSWORD = 'read:onlyPassword';
+    const READ_FIRST_NAME = 'read:onlyFirstName';
+    const READ_LAST_NAME = 'read:onlyLastName';
 
 
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
+    #[Groups([User::READ_USER])]
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    #[Groups(['read:Users', 'read:Cave', 'write:User', 'write:PutFirstName'])]
+    #[Groups([
+        User::READ_USER,
+        User::REGISTER_USER,
+        User::READ_FIRST_NAME,
+        User::PUT_FIRST_NAME
+        ])]
     private ?string $firstName = null;
 
     #[ORM\Column(length: 255)]
-    #[Groups(['read:Users', 'write:User', 'write:PutLastName'])]
+    #[Groups([
+        User::READ_USER,
+        User::REGISTER_USER,
+        User::READ_LAST_NAME,
+        User::PUT_LAST_NAME
+        ])]
     private ?string $lastName = null;
 
     #[ORM\Column(length: 255, unique: true)]
-    #[Groups(['read:User', 'write:User'])]
+    #[Groups([
+        User::READ_USER,
+        User::REGISTER_USER
+        ])]
     private ?string $email = null;
 
     #[ORM\Column(length: 255)]
-    #[Groups(['write:User'])]
+    #[Groups([
+        User::REGISTER_USER,
+        User::PUT_PASSWORD,
+        User::READ_PASSWORD
+        ])]
     private ?string $password = null;
 
     private ?string $plainPassword = null;
@@ -110,7 +142,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?array $roles = [];
 
     #[ORM\OneToMany(mappedBy: 'owner', targetEntity: Cave::class)]
-    #[Groups(['read:User'])]
+    //#[Groups()]
     private Collection $caves;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
