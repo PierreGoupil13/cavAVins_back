@@ -97,6 +97,9 @@ class PayloadManager
         if (array_key_exists(User::USER_NEW_PASSWORD_CONFIRMATION_NAME_API_KEY, $payload)) {
             $data[User::USER_NEW_PASSWORD_CONFIRMATION_NAME_API_KEY] = $this->extractPayloadValue($payload,User::USER_NEW_PASSWORD_CONFIRMATION_NAME_API_KEY, PayloadManager::PAYLOAD_DATA_TYPE_STRING, false);
         }
+        if (array_key_exists(User::USER_RESET_TOKEN_API_KEY, $payload)) {
+            $data[User::USER_RESET_TOKEN_API_KEY] = $this->extractPayloadValue($payload,User::USER_RESET_TOKEN_API_KEY, PayloadManager::PAYLOAD_DATA_TYPE_STRING, false);
+        }
 
         return $data;
     }

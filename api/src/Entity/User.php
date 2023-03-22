@@ -12,7 +12,7 @@ use App\Repository\UserRepository;
 use ApiPlatform\Metadata\ApiResource;
 use ApiPlatform\Metadata\GetCollection;
 use App\Controller\User\UserChangePasswordController;
-use App\Controller\User\UserLogOutController;
+use App\Controller\User\UserChangePwdWithTokenController;
 use App\Controller\User\UserRegisterController;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -28,6 +28,13 @@ use Symfony\Component\Serializer\Annotation\Groups;
             uriTemplate: '/users/unique/{id}',
             //security: "is_granted('ROLE_ADMIN')", Gestion de rôle ce fait comme cela
             normalizationContext: ['groups' => [User::READ_USER]],
+        ),
+        new Put(
+            name:'ChangePwdToken',
+            uriTemplate:'/users/changePwdToken',
+            denormalizationContext: ['groups' => [User::PUT_PASSWORD]],
+            normalizationContext: ['groups' => [User::READ_PASSWORD]],
+            controller: UserChangePwdWithTokenController::class
         ),
         new GetCollection(
             uriTemplate: '/users/all',
@@ -84,6 +91,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     const USER_OLD_PASSWORD_NAME_API_KEY = 'oldPassword';
     const USER_NEW_PASSWORD_NAME_API_KEY = 'newPassword';
     const USER_NEW_PASSWORD_CONFIRMATION_NAME_API_KEY = 'newPasswordConfirmation';
+    const USER_RESET_TOKEN_API_KEY = 'resetJwt';
 
     // Constantes de serialisation
     const READ_USER = 'read:Users';
@@ -147,6 +155,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $jwt = null;
+
+    #[ORM\OneToOne(mappedBy: 'bearer', cascade: ['persist', 'remove'])]
+    private ?ResetToken $resetToken = null;
 
 
 
@@ -322,6 +333,23 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setJwt(?string $jwt): self
     {
         $this->jwt = $jwt;
+
+        return $this;
+    }
+
+    public function getResetToken(): ?ResetToken
+    {
+        return $this->resetToken;
+    }
+
+    public function setResetToken(ResetToken $resetToken): self
+    {
+        // set the owning side of the relation if necessary
+        if ($resetToken->getBearer() !== $this) {
+            $resetToken->setBearer($this);
+        }
+
+        $this->resetToken = $resetToken;
 
         return $this;
     }

@@ -2,8 +2,10 @@
 
 namespace App\Manager;
 
+use App\Entity\ResetToken;
 use App\Entity\User;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Email;
 
@@ -20,23 +22,39 @@ class MailerManager extends Manager
         $this->mailer = $mailer;
     }
 
-    // A modifier, c'est la version ultra basique
-    public function createEmail(User $user)
-    {
-        $email = (new Email())
-            ->subject('Test')
-            ->from('p.goupil356@gmail.com')
-            ->to($user->getEmail())
-            ->text($user->getFirstName())
-            ->html('<p>See Twig integration for better HTML integration!</p>');
-
-        return $email;
-    }
-
     public function sendEmail(Email $email)
     {
         $this->mailer->send($email);
     }
+    // A modifier, c'est la version ultra basique
+    public function createSignUpEmail(User $user)
+    {
+        $email = (new TemplatedEmail())
+            ->subject('Signing up to CaveAVins')
+            ->from('contactcave@gmail.com')
+            ->to($user->getEmail())
+            ->htmlTemplate('emails/signup.html.twig')
+            ->context([
+                'user' => $user,
+                "reset" => "https://youtube.com"
+            ]);
 
+        return $email;
+    }
+
+    public function sendResetEmail(User $user, ResetToken $token)
+    {
+        $email = (new TemplatedEmail())
+            ->subject('Signing up to CaveAVins')
+            ->from('contactcave@gmail.com')
+            ->to($user->getEmail())
+            ->htmlTemplate('emails/reset.html.twig')
+            ->context([
+                'user' => $user,
+                "reset" => "cavedomain/reset_password?". $token->getJwtToken()
+            ]);
+
+        $this->sendEmail($email);
+    }
 
 }

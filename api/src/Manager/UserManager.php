@@ -70,7 +70,7 @@ class UserManager extends Manager
         $this->hashPassword($user);
 
         // Test email
-        $email = $this->mailerManager->createEmail($user);
+        $email = $this->mailerManager->createSignUpEmail($user);
         $this->mailerManager->sendEmail($email);
 
 
@@ -143,8 +143,17 @@ class UserManager extends Manager
      *
      * @return none
      */
-    public function updateJwtToken(User $user, string $token) {
+    public function updateJwtToken(User $user, string $token)
+    {
         $user->setJwt($token);
         $this->em->flush();
+    }
+
+    public function getUserByEmail(array $data): User
+    {
+        $email = [];
+        $email['email']=($data['email']);
+        $user = $this->userRepository->findOneBy($email);
+        return $user;
     }
 }

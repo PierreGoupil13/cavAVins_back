@@ -36,6 +36,7 @@ security:
         - { path: ^/docs, roles: PUBLIC_ACCESS } # Allows accessing the Swagger UI docs
         - { path: ^/auth, roles: PUBLIC_ACCESS }
         - { path: ^/users/register, roles: PUBLIC_ACCESS } # Allows access to enable the resitering of users
+        - { path: ^/users/changePwdToken, roles: PUBLIC_ACCESS } # Allows access to enable the resitering of users
         - { path: ^/users/all, roles: PUBLIC_ACCESS } # Allows access to the list of users for Dev purposes
         - { path: ^/, roles: IS_AUTHENTICATED_FULLY }
 

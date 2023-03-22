@@ -69,12 +69,20 @@
     "method": "POST",
     "sortNum": 0,
     "created": "2023-03-15T10:59:34.887Z",
+<<<<<<< HEAD
     "modified": "2023-03-22T13:49:11.963Z",
+=======
+    "modified": "2023-03-22T11:33:13.941Z",
+>>>>>>> a661712 ((feat) : rien qui marche pour l'instant)
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
+<<<<<<< HEAD
       "raw": "{\n  \"email\": \"p.goupil356@gmail.com\",\n  \"password\": \"pwdtest\"\n}",
+=======
+      "raw": "{\n  \"email\": \"p.gadjo@gmail.com\",\n  \"password\": \"pwdtest\"\n}",
+>>>>>>> a661712 ((feat) : rien qui marche pour l'instant)
       "form": []
     },
     "tests": []
@@ -153,21 +161,37 @@
     "colId": "history",
     "containerId": "",
     "name": "https://localhost/users/unique/43/changePassword",
+<<<<<<< HEAD
     "url": "https://localhost/users/unique/88/changePassword",
     "method": "PUT",
     "sortNum": 0,
     "created": "2023-03-15T15:26:32.785Z",
     "modified": "2023-03-22T13:53:46.168Z",
+=======
+    "url": "https://localhost/users/unique/52/changePassword",
+    "method": "PUT",
+    "sortNum": 0,
+    "created": "2023-03-15T15:26:32.785Z",
+    "modified": "2023-03-22T11:33:42.191Z",
+>>>>>>> a661712 ((feat) : rien qui marche pour l'instant)
     "headers": [],
     "params": [],
     "body": {
       "type": "json",
+<<<<<<< HEAD
       "raw": "{\n  \"oldPassword\": \"pwdtest\",\n  \"newPassword\": \"pwdtest\",\n  \"newPasswordConfirmation\": \"pwdtest\",\n  \"email\": \"p.goupil356@gmail.com\"\n}",
+=======
+      "raw": "{\n  \"oldPassword\": \"pwdtest\",\n  \"newPassword\": \"pwdcomplique\",\n  \"newPasswordConfirmation\": \"pwdcomplique\",\n  \"email\": \"p.gadjo@gmail.com\"\n}",
+>>>>>>> a661712 ((feat) : rien qui marche pour l'instant)
       "form": []
     },
     "auth": {
       "type": "bearer",
+<<<<<<< HEAD
       "bearer": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE2Nzk0OTI5NTEsImV4cCI6MTY3OTQ5NjU1MSwicm9sZXMiOlsiUk9MRV9VU0VSIl0sInVzZXJuYW1lIjoicC5nb3VwaWwzNTZAZ21haWwuY29tIn0.eZo-dIJdujlWyXx_h5YywlEFI8bEOFAFCmObqk0Zs6s1fG9Ht6Ih6-HdElF6aZzZMjXNru_OVPS-MhbnINJOXqqqf6CZc6jJnb2emv5r_3Y_9sg6O9fsZ-PGQRxtxis91wAwxFn1Ntvfbey8WjwtW9HhDC4EujfFKt1bcvC8Z_qUbmxCSwrWl1Sd7DZM2-QgWFabU-RQmCTaDgcBpqWQvsvNtil3EJ1YS3EHBlkOTHAg0hdJ487miNgQe6_A2feCrkivCCFZoZvRCckOWA-jtUDiF5BuYUZf5RTkNVF9-4W8WKT9PQPbOyXdezLftj1cWo-PYpVAHAkGo9e5U0aCDw"
+=======
+      "bearer": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpYXQiOjE2Nzk0ODQ3OTMsImV4cCI6MTY3OTQ4ODM5Mywicm9sZXMiOlsiUk9MRV9VU0VSIl0sInVzZXJuYW1lIjoicC5nYWRqb0BnbWFpbC5jb20ifQ.pnjr2yZzwNgkbwZp3zXDPmKr8mbKI_blzDsJn4qttcwRTCRfVASLamo4otFU5hx9LYpBX2InL1vfshEmcuHG922xmJkdd-J9SNnW-MMFQ7-bzmqsRRl8hdLBp3zn88OXtj6lW5ZnFHCGzMpJj9hHWYIIIS1OhRDGyb25A-w33jj0U-ODtrL5T_FB-pUxQux-i8i7j0-MW8AU0Cs3nh9Y0Cz20JmsmunMTn232gQR-mhTBTssqj_dVgVcwfLTgHOO5k8MgVx-3K_xSPPbddnOgPk3ichcerzlIr4tPCH9rz0SuGQOCYLm5D1oHd_5boymBI6sepLAfn5XkAJQqX4djA"
+>>>>>>> a661712 ((feat) : rien qui marche pour l'instant)
     },
     "tests": []
   },
@@ -209,11 +233,19 @@
     "colId": "history",
     "containerId": "",
     "name": "https://localhost/users/changePwdToken",
+<<<<<<< HEAD
     "url": "https://localhost//contexts/User",
     "method": "PUT",
     "sortNum": 0,
     "created": "2023-03-21T09:52:27.888Z",
     "modified": "2023-03-22T13:45:13.813Z",
+=======
+    "url": "https://localhost/users/changePwdToken",
+    "method": "PUT",
+    "sortNum": 0,
+    "created": "2023-03-21T09:52:27.888Z",
+    "modified": "2023-03-22T11:23:59.691Z",
+>>>>>>> a661712 ((feat) : rien qui marche pour l'instant)
     "headers": [],
     "params": [],
     "body": {
