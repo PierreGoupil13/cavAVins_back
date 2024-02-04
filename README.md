@@ -1,6 +1,5 @@
 <h1 align="center"><a href="https://api-platform.com"><img src="https://api-platform.com/logo-250x250.png" alt="API Platform"></a></h1>
 
-ZKRg9*^ap7Ypsx6jzP.JceW~LhoM#Z-HF9-bRfa@{Xuin-P-YBiEZ_Vt7<u)Mv%
 
                                                              
 API Platform is a next-generation web framework designed to easily create API-first projects without compromising extensibility
